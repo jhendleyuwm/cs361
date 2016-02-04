@@ -11,33 +11,41 @@ public class Frame
 	{
 		
 	}
+	public void setThrow1(int t1)
+	{
+		this._throw1 = t1;
+		if(this._throw1 == 10) // Strike
+		{
+			this._isStrike = true;
+		}
+	}
 	
-	public void setStrike(boolean b){
-		
+	public void setThrow2(int t2)
+	{
+		this._throw2 = t2;
+		if(this._throw1 != 10 && this._throw1 + this._throw2 == 10) // Spare
+		{
+			this._isSpare = true;
+		}
+		else
+			this._value = this._throw1 + this._throw2;
 	}
 	
 	public boolean getStrike(){
 		return this._isStrike;
 	}
 	
-	public void setSpare(boolean b){
-		
-	}
-	
 	public boolean getSpare(){
 		return this._isSpare;
 	}
-	
-
 	
 	public int getValue(){
 		return this._value;
 	}
 	
-	public void setValue(int i)
+	public void setValue(int val)
 	{
-		this._value = i;
+		this._value = val;
 	}
-	
 	
 }
