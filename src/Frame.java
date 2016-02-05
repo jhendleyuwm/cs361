@@ -35,6 +35,10 @@ public class Frame
 		else
 			this._value = this._throw1 + this._throw2;
 	}
+	public int getPins()
+	{
+		return this._throw1+this._throw2;
+	}
 	
 	public boolean getStrike(){
 		return this._isStrike;

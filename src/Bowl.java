@@ -29,6 +29,11 @@ public class Bowl {
 	
 	public void updateScore(Frame frame[])
 	{
+		if (frame[9].getSpare() || frame[9].getStrike())
+		{
+		frame[9].setValue(frame[9].getPins()+frame[10].getValue());
+		}
+		
 		
 	}
 	
