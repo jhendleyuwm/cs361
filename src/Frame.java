@@ -9,7 +9,11 @@ public class Frame
 	
 	public Frame()
 	{
-		
+		this._isSpare=false;
+		this._isStrike=false;
+		this._throw1=0;
+		this._throw2=0;
+		this._value=0;
 	}
 	public void setThrow1(int t1)
 	{
@@ -17,6 +21,7 @@ public class Frame
 		if(this._throw1 == 10) // Strike
 		{
 			this._isStrike = true;
+			this._value=10;
 		}
 	}
 	
