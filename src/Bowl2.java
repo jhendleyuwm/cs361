@@ -57,4 +57,10 @@ public class Bowl2 {
 	public int getCurrentFrame(){
 		return currentIndex+1;
 	}
+	public Frame getFrame(int i){
+		if(i<myFrames.length){
+			return myFrames[i];
+		}
+		return null;
+	}
 }
