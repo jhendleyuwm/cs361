@@ -39,7 +39,12 @@ public class Frame
 	{
 		return this._throw1+this._throw2;
 	}
-	
+	public int getThrow1(){
+		return this._throw1;
+	}
+	public int getThrow2(){
+		return this._throw2;
+	}
 	public boolean getStrike(){
 		return this._isStrike;
 	}
