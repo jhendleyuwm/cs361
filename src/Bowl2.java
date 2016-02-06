@@ -16,6 +16,7 @@ public class Bowl2 {
 		else
 		{
 			if(currentThrow == 1){
+				myFrames[currentIndex] = new Frame();
 				myFrames[currentIndex].setThrow1(pinsDown);
 				if(myFrames[currentIndex].getStrike()){
 					currentIndex++;
