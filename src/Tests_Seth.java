@@ -30,7 +30,7 @@ public class Tests_Seth{
 		try{
 			game.addThrow(7);
 			game.addThrow(2);
-			assertEquals(4,game.getScore());
+			assertEquals(9,game.getScore());
 			}
 			catch(Exception e){
 				assertFalse("should not have thrown exception here", true);

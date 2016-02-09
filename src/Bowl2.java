@@ -48,15 +48,15 @@ public class Bowl2 {
 				Frame prev = myFrames[i-1];
 				Frame cur = myFrames[i];
 				if(prev.getSpare()){
-					prev.setValue(prev.getPins()+cur.getValue());;
+					prev.setValue(prev.getPins()+cur.getPins());
 				}
 				else if(prev.getStrike()){
 
-					if(i+1<_currentIndex){
-						prev.setValue(prev.getPins()+ cur.getValue() + myFrames[i+1].getValue());
+					if(i+1<=_currentIndex){
+						prev.setValue(prev.getPins()+ cur.getPins() + myFrames[i+1].getPins());
 					}
 					else
-						prev.setValue(prev.getPins()+cur.getValue());
+						prev.setValue(prev.getPins()+cur.getPins());
 
 				}
 			}
@@ -65,7 +65,7 @@ public class Bowl2 {
 	}
 	public int getScore(){
 		int score = 0;
-		for(int i=0; i<=_currentIndex; ++i){
+		for(int i=0; i<=_currentIndex && i<myFrames.length; ++i){
 			if(myFrames[i] != null)
 				score += myFrames[i].getValue();
 		}

@@ -33,9 +33,9 @@ public class Frame
 		if(this._throw1 != 10 && this._throw1 + this._throw2 == 10) // Spare
 		{
 			this._isSpare = true;
+			
 		}
-		else
-			this._value = this._throw1 + this._throw2;
+		this._value = this._throw1 + this._throw2;
 	}
 	public int getPins()
 	{
