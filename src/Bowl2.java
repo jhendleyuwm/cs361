@@ -6,7 +6,7 @@ public class Bowl2 {
 	{
 
 	}
-	
+
 	public void addThrow(int pinsDown) throws Exception
 	{
 		if(pinsDown>10 || pinsDown<0){
@@ -22,6 +22,7 @@ public class Bowl2 {
 				myFrames[_currentIndex] = new Frame();
 				myFrames[_currentIndex].setThrow1(pinsDown);
 				if(myFrames[_currentIndex].getStrike()){
+					updatePreviousFrame();
 					_currentIndex++;
 				}
 				else{
@@ -31,42 +32,42 @@ public class Bowl2 {
 			else{
 				myFrames[_currentIndex].setThrow2(pinsDown);
 				_currentThrow = 1;
+				updatePreviousFrame();
 				_currentIndex++;
-				
-				
+
 			}
-			
-			updatePreviousFrame();
 		}
 	}
-	
+
 	public void updatePreviousFrame()
 	{
-		if(myFrames.length > 1){
-			
-				for(int i=myFrames.length-1;i>0; i--){
-					Frame prev = myFrames[i-1];
-					Frame cur = myFrames[i];
-					if(prev.getSpare()){
-						prev.setValue(prev.getPins()+cur.getValue());;
-					}
-					else if(prev.getStrike()){
-						
-						if(i+1<myFrames.length){
-							prev.setValue(prev.getPins()+ cur.getValue() + myFrames[i+1].getValue());
-						}
-						else
-							prev.setValue(prev.getPins()+cur.getValue());
-						
-					}
+
+		if(_currentIndex > 0){
+
+			for(int i=_currentIndex;i>0; i--){
+				Frame prev = myFrames[i-1];
+				Frame cur = myFrames[i];
+				if(prev.getSpare()){
+					prev.setValue(prev.getPins()+cur.getValue());;
 				}
-			
+				else if(prev.getStrike()){
+
+					if(i+1<_currentIndex){
+						prev.setValue(prev.getPins()+ cur.getValue() + myFrames[i+1].getValue());
+					}
+					else
+						prev.setValue(prev.getPins()+cur.getValue());
+
+				}
+			}
+
 		}
 	}
 	public int getScore(){
 		int score = 0;
-		for(int i=0; i<myFrames.length; ++i){
-			score += myFrames[i].getValue();
+		for(int i=0; i<=_currentIndex; ++i){
+			if(myFrames[i] != null)
+				score += myFrames[i].getValue();
 		}
 		return score;
 	}
@@ -75,7 +76,7 @@ public class Bowl2 {
 	}
 	public Frame getFrame(int i){
 		if(i<myFrames.length){
-			return myFrames[i];
+			return myFrames[i-1];
 		}
 		return null;
 	}

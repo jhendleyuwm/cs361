@@ -17,7 +17,7 @@ public class Tests_Seth{
 		try{
 		game.addThrow(7);
 		
-		assertEquals(game.getScore(), 7);
+		assertEquals(7,game.getScore());
 		}
 		catch(Exception e){
 			assertFalse(e.getMessage() + " should not have thrown exception here", true);
@@ -30,7 +30,7 @@ public class Tests_Seth{
 		try{
 			game.addThrow(7);
 			game.addThrow(2);
-			assertEquals(game.getScore(), 4);
+			assertEquals(4,game.getScore());
 			}
 			catch(Exception e){
 				assertFalse("should not have thrown exception here", true);
@@ -44,7 +44,7 @@ public class Tests_Seth{
 			game.addThrow(7);
 			game.addThrow(2);
 			game.addThrow(3);
-			assertEquals(game.getScore(), 12);
+			assertEquals(12,game.getScore());
 			}
 			catch(Exception e){
 				assertFalse("should not have thrown exception here", true);
@@ -59,8 +59,8 @@ public class Tests_Seth{
 			game.addThrow(3);
 			game.addThrow(3);
 			game.addThrow(5);
-			assertEquals(game.getScore(), 26);
-			assertEquals(game.getFrame(1).getValue(), 18);
+			assertEquals( 26,game.getScore());
+			assertEquals(18,game.getFrame(1).getValue());
 			}
 			catch(Exception e){
 				assertFalse("should not have thrown exception here", true);
@@ -71,9 +71,9 @@ public class Tests_Seth{
 	@Test
 	public void testStrikeMovesToNextFrame(){
 		try{
-			assertEquals(game.getCurrentFrame(),1);
+			assertEquals(1,game.getCurrentFrame());
 			game.addThrow(10);
-			assertEquals(game.getCurrentFrame(),2);
+			assertEquals(2,game.getCurrentFrame());
 			}
 			catch(Exception e){
 				assertFalse("should not have thrown exception here", true);
@@ -88,8 +88,8 @@ public class Tests_Seth{
 		game.addThrow(5);
 		game.addThrow(1);
 		game.addThrow(4);
-		assertEquals(game.getScore(), 36);
-		assertEquals(game.getFrame(1).getValue(), 23);
+		assertEquals(36,game.getScore());
+		assertEquals(23,game.getFrame(1).getValue());
 		}
 		catch(Exception e){
 			assertFalse("should not have thrown exception here", true);
@@ -139,12 +139,12 @@ public class Tests_Seth{
 			assertFalse("should not have thrown exception here", true);
 		}
 		try{
-			
+			game.addThrow(10);
 		}
 		catch(Exception e){
 			good = true;
 		}
-		assertTrue("11th frame should not be allowd", good);
-	} //- ensure throwing on the 11th frame is not allowed (in some form)
+		assertTrue("11th frame should not be allowed", good);
+	} //- ensure throwing on the 11th frame is not allowed (in some for
 
 }

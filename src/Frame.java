@@ -23,6 +23,8 @@ public class Frame
 			this._isStrike = true;
 			this._value=10;
 		}
+		else  
+			this._value = t1;
 	}
 	
 	public void setThrow2(int t2)
