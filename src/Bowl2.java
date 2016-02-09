@@ -29,28 +29,26 @@ public class Bowl2 {
 				}
 			}
 			else{
-				if(_currentIndex==9&&myFrames[9].getStrike()){
-					
-				}
 				myFrames[_currentIndex].setThrow2(pinsDown);
 				_currentThrow = 1;
 				_currentIndex++;
 				
 				
 			}
+			
 			updatePreviousFrame();
 		}
 	}
 	
 	public void updatePreviousFrame()
 	{
-		if(myFrames.length > 0){
+		if(myFrames.length > 1){
 			
-				for(int i=myFrames.length;i>0; i--){
+				for(int i=myFrames.length-1;i>0; i--){
 					Frame prev = myFrames[i-1];
 					Frame cur = myFrames[i];
 					if(prev.getSpare()){
-						prev.setValue(prev.getThrow1()+cur.getValue());;
+						prev.setValue(prev.getPins()+cur.getValue());;
 					}
 					else if(prev.getStrike()){
 						
