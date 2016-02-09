@@ -9,6 +9,9 @@ public class Bowl2 {
 	
 	public void addThrow(int pinsDown) throws Exception
 	{
+		if(pinsDown>10 || pinsDown<0){
+			throw new Exception("pins must be between 0 and 10");
+		}
 		if (currentIndex>=10)
 		{
 			throw new Exception("too many turns");
