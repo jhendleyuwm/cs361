@@ -2,11 +2,12 @@
 public class Bowl2 {
 	private Frame myFrames[] = new Frame[10];
 	private int _currentIndex = 0, _currentThrow=1;
-	public Bowl2()
-	{
-
-	}
-
+	public Bowl2(){}
+	/**
+	 * adds a single throw to current frame
+	 * @param pinsDown
+	 * @throws Exception
+	 */
 	public void addThrow(int pinsDown) throws Exception
 	{
 		if(pinsDown>10 || pinsDown<0){
@@ -38,27 +39,27 @@ public class Bowl2 {
 			}
 		}
 	}
-
+	/**
+	 * updates the values of previous two frames if they are strikes or spares
+	 */
 	public void updatePreviousFrame()
 	{
 
 		if(_currentIndex > 0){
 
-			for(int i=_currentIndex;i>0; i--){
-				Frame prev = myFrames[i-1];
-				Frame cur = myFrames[i];
-				if(prev.getSpare()){
+			
+				Frame prev = myFrames[_currentIndex-1];
+				Frame cur = myFrames[_currentIndex];
+				Frame prevprev = null;
+				if(_currentIndex>1){
+					prevprev = myFrames[_currentIndex-2];
+				}
+				
+				if(prev.getSpare() || prev.getStrike()){
 					prev.setValue(prev.getPins()+cur.getPins());
 				}
-				else if(prev.getStrike()){
-
-					if(i+1<=_currentIndex){
-						prev.setValue(prev.getPins()+ cur.getPins() + myFrames[i+1].getPins());
-					}
-					else
-						prev.setValue(prev.getPins()+cur.getPins());
-
-				}
+				if(prevprev != null && prevprev.getStrike()){
+						prevprev.setValue(prevprev.getPins()+prev.getPins()+cur.getPins());
 			}
 
 		}
