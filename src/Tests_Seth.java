@@ -80,8 +80,41 @@ public class Tests_Seth{
 			assertFalse("should not have thrown exception here", true);
 		}
 	} //- throw a strike in a frame and make sure its score is correct (counting the following frames, which should also be completed)
-	public void testSpareOnLastFrame(){} //- test throwing a spare on the 10th frame
-	public void testStrikeOnLastFrames(){} //- test throwing a strike on the 8th, 9th, and 10th frames
-	public void testThrowOn11thFrame(){} //- ensure throwing on the 11th frame is not allowed (in some form)
+	public void testSpareOnLastFrame(){
+		try{
+		for(int i = 1; i<11; ++i){
+			game.addThrow(0);
+			game.addThrow(10);
+			
+		}
+		assertEquals(100, game.getScore());
+	}
+	catch(Exception e){
+		assertFalse("should not have thrown exception here", true);
+	}
+	} //- test throwing a spare on the 10th frame
+	public void testStrikeOnLastFrames(){
+		
+	} //- test throwing a strike on the 8th, 9th, and 10th frames
+	public void testThrowOn11thFrame(){
+		boolean good = false;
+		try{
+			for(int i = 1; i<11; ++i){
+				game.addThrow(0);
+				game.addThrow(5);
+				
+			}
+		}
+		catch(Exception e){
+			assertFalse("should not have thrown exception here", true);
+		}
+		try{
+			
+		}
+		catch(Exception e){
+			good = true;
+		}
+		assertTrue("11th frame should not be allowd", good);
+	} //- ensure throwing on the 11th frame is not allowed (in some form)
 
 }

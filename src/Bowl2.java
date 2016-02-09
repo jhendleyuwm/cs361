@@ -1,7 +1,7 @@
 
 public class Bowl2 {
 	private Frame myFrames[] = new Frame[10];
-	private int currentIndex = 0, currentThrow=1;
+	private int _currentIndex = 0, _currentThrow=1;
 	public Bowl2()
 	{
 
@@ -12,26 +12,31 @@ public class Bowl2 {
 		if(pinsDown>10 || pinsDown<0){
 			throw new Exception("pins must be between 0 and 10");
 		}
-		if (currentIndex>=10)
+		if (_currentIndex>=10)
 		{
 			throw new Exception("too many turns");
 		}
 		else
 		{
-			if(currentThrow == 1){
-				myFrames[currentIndex] = new Frame();
-				myFrames[currentIndex].setThrow1(pinsDown);
-				if(myFrames[currentIndex].getStrike()){
-					currentIndex++;
+			if(_currentThrow == 1){
+				myFrames[_currentIndex] = new Frame();
+				myFrames[_currentIndex].setThrow1(pinsDown);
+				if(myFrames[_currentIndex].getStrike()){
+					_currentIndex++;
 				}
 				else{
-					currentThrow = 2;
+					_currentThrow = 2;
 				}
 			}
 			else{
-				myFrames[currentIndex].setThrow2(pinsDown);
-				currentThrow = 1;
-				currentIndex++;
+				if(_currentIndex==9&&myFrames[9].getStrike()){
+					
+				}
+				myFrames[_currentIndex].setThrow2(pinsDown);
+				_currentThrow = 1;
+				_currentIndex++;
+				
+				
 			}
 			updatePreviousFrame();
 		}
@@ -39,15 +44,25 @@ public class Bowl2 {
 	
 	public void updatePreviousFrame()
 	{
-		if(currentIndex > 0){
-			Frame prev = myFrames[currentIndex-1];
-			Frame cur = myFrames[currentIndex];
-			if(prev.getSpare()){
-				prev.setValue(cur.getThrow1() + prev.getValue());
-			}
-			else if(prev.getStrike()){
-				prev.setValue(cur.getPins() + prev.getValue());
-			}
+		if(myFrames.length > 0){
+			
+				for(int i=myFrames.length;i>0; i--){
+					Frame prev = myFrames[i-1];
+					Frame cur = myFrames[i];
+					if(prev.getSpare()){
+						prev.setValue(prev.getThrow1()+cur.getValue());;
+					}
+					else if(prev.getStrike()){
+						
+						if(i+1<myFrames.length){
+							prev.setValue(prev.getPins()+ cur.getValue() + myFrames[i+1].getValue());
+						}
+						else
+							prev.setValue(prev.getPins()+cur.getValue());
+						
+					}
+				}
+			
 		}
 	}
 	public int getScore(){
@@ -58,7 +73,7 @@ public class Bowl2 {
 		return score;
 	}
 	public int getCurrentFrame(){
-		return currentIndex+1;
+		return _currentIndex+1;
 	}
 	public Frame getFrame(int i){
 		if(i<myFrames.length){
